@@ -32,4 +32,7 @@ def optimal_prime_guess(target, max_range):
             high = mid_idx - 1
 
     return "Number not found in prime list."
-print(optimal_prime_guess(73, 100))
+if __name__ == "__main__":
+    target = int(input("Enter the prime number to search for: "))
+    max_range = int(input("Enter the maximum range: "))
+    print(optimal_prime_guess(target, max_range))
