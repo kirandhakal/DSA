@@ -1,3 +1,10 @@
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return False
+    return True
 import math
 
 def get_primes(n):
@@ -33,6 +40,12 @@ def optimal_prime_guess(target, max_range):
 
     return "Number not found in prime list."
 if __name__ == "__main__":
-    target = int(input("Enter the prime number to search for: "))
+    while True:
+        target = int(input("Enter the prime number to search for: "))
+        if is_prime(target):
+            # print(f"{target} is a prime number.")
+            break
+        else:
+            print(f"{target} is NOT a prime number. Please enter a prime number.")
     max_range = int(input("Enter the maximum range: "))
     print(optimal_prime_guess(target, max_range))
