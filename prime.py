@@ -27,11 +27,26 @@ def guess_number_flow():
     while 2 ** n < max_range:
         n += 1
     print(f"For range {max_range}, using array of {n} random numbers.")
-    # 3. Generate array of n random numbers
-    arr = sorted(random.sample(range(1, max_range + 1), n))
-    print(f"Random array: {arr}")
-    # 4. Ask user for a number
-    user_num = int(input(f"Pick a number between 1 and {max_range}: "))
+    # 3. Generate array of n random primes
+    primes = get_primes(max_range)
+    if len(primes) < n:
+        print(f"Not enough primes in range to generate array of {n} primes.")
+        return
+    arr = sorted(random.sample(primes, n))
+    print(f"Prime array for guessing: {arr}")
+    # 4. Ask user for a prime number
+    while True:
+        user_num = int(input(f"Pick a prime number between 1 and {max_range}: "))
+        if user_num in primes:
+            break
+        else:
+            print(f"{user_num} is NOT a prime number. Please enter a prime number.")
+
+    # Check if the user's number is in the array
+    if user_num in arr:
+        print(f"Your number {user_num} is already in the array! No need to guess.")
+        return
+
     # 5. Guessing algorithm (binary search style)
     low = 0
     high = n - 1
